@@ -1,8 +1,5 @@
 package es.errepunto.eaa.events;
 
-import java.util.ArrayList;
-
-import es.errepunto.eaa.common.Parameter;
 
 /**
  * Main interface for events.
@@ -11,13 +8,24 @@ import es.errepunto.eaa.common.Parameter;
  *
  */
 public interface Event {
-	public boolean isTriggered();
 	
-	public void addParameter(Parameter<?> p);
+	/**
+	 * Checks if the event is active
+	 * @return true if the event is active or false if is inactive
+	 */
+	public boolean isActive();
 	
-	public ArrayList<Parameter> getParameters();
+	/**
+	 * Gather data from his sources and stores it internally. It' should check if the event is active afterwards
+	 * 
+	 * @return true if data is obtained or false if some error occurred.
+	 */
+	public boolean obtainData();
 	
-	public Parameter getParameter(String name);
 	
-	public void removeParameter(String name);
+	/**
+	 * Obtains last error message.
+	 * @return String with the last error message.
+	 */
+	public String getLastError();
 }
